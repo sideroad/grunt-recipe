@@ -1,0 +1,44 @@
+{
+  "name": "grunt-recipe",
+  "description": "create dependencies.json for recipe.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/sideroad/grunt-recipe",
+  "author": {
+    "name": "sideroad",
+    "email": "sideroad.jp@gmail.com",
+    "url": "http://sideroad.secret.jp/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sideroad/grunt-recipe.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sideroad/grunt-recipe/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/sideroad/grunt-recipe/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.1",
+    "grunt": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.0"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
