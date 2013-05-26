@@ -50,6 +50,8 @@ Declare below under the namespace property.
 |concat|`Boolean`||true|Is concatenate and output dest?|
 |min|`Boolean`||true|Is minify and output dest?|
 
+See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/recipe.json)
+
 ### Options
 
 #### options.concat
