@@ -37,6 +37,19 @@ grunt.initConfig({
 })
 ```
 
+### Prepare for execute
+
+#### recipe.json
+Declare below under the namespace property.
+
+|Property Name|Type|Required|Default value|Value of meaning|
+|-----|-----|-----|-----|-----|
+|path|`String`|*||Library path|
+|url|`String`|*||Library URL|
+|dependencies|`Array<String>`|*|[]|Dependents namespace|
+|concat|`Boolean`||true|Is concatenate and output dest?|
+|min|`Boolean`||true|Is minify and output dest?|
+
 ### Options
 
 #### options.concat
@@ -44,7 +57,7 @@ Type: `String`
 Default value: `'concat'`
 
 Concatenate configuration properties name.
-Set null, if you don't want to add concatenate configuration automaticaly.
+Set null, if you don't want to add concatenate configuration automatically.
 
 #### options.min
 Type: `String`
