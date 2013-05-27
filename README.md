@@ -45,6 +45,7 @@ Declare below under the namespace property.
 |Property Name|Type|Required|Default value|Value of meaning|
 |-----|-----|-----|-----|-----|
 |path|`String`|*||Library path|
+|dest|`String`|*||Destination directory path|
 |url|`String`|*||Library URL|
 |dependencies|`Array<String>`|*|[]|Dependents namespace|
 |concat|`Boolean`||true|Is concatenate and output dest?|
@@ -110,14 +111,6 @@ Type: `String`
 Default value: `.with-dependencies.js`
 
 File name suffix of minified source.
-
-### options.path.version
-Type: `String`
-Default value: dest path
-
-### options.path.dependencies
-Type: `String`
-Default value: dest path
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
