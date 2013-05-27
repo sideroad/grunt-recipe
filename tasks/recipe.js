@@ -31,27 +31,29 @@ module.exports = function(grunt) {
         _ = grunt.util._;
 
     this.files.forEach(function(f) {
-      var src = f.src.filter(function(filepath) {
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        var recipe = grunt.file.readJSON(filepath),
-            json = {},
-            resolve = function(namespace){
-              var dependencies = recipe[namespace].dependencies,
-                  childs = [];
-              if(dependencies.length){
-                _.map(dependencies, function(namespace){
-                  childs = childs.concat( resolve(namespace) ).concat(namespace);
-                });
-              }
-              return _.uniq(childs );
-            };
+      var json = {},
+          recipe = {},
+          src = f.src.filter(function(filepath) {
+            if (!grunt.file.exists(filepath)) {
+              grunt.log.warn('Source file "' + filepath + '" not found.');
+              return false;
+            } else {
+              return true;
+            }
+          }).map(function(filepath) {
+            recipe = _.extend(recipe, grunt.file.readJSON(filepath));
+          }),
+          resolve = function(namespace){
+            var dependencies = recipe[namespace].dependencies,
+                childs = [];
+            if(dependencies.length){
+              _.map(dependencies, function(namespace){
+                childs = childs.concat( resolve(namespace) ).concat(namespace);
+              });
+            }
+            return _.uniq(childs );
+          };
+
         _.each(recipe, function( val, namespace ){
           var files,
               concat,
@@ -66,7 +68,7 @@ module.exports = function(grunt) {
                 return path;
               }).compact().value();
 
-          if(options.concat){
+          if(options.concat && recipe[namespace].concat !== false){
             concat = grunt.config.get(options.concat);
 
             // concat dependencies
@@ -82,7 +84,7 @@ module.exports = function(grunt) {
             grunt.config.set(options.concat, concat);
           }
 
-          if(options.min){
+          if(options.min && recipe[namespace].min !== false){
             min = grunt.config.get(options.min);
 
             // concat dependencies with minify 
@@ -101,12 +103,10 @@ module.exports = function(grunt) {
           json[namespace] = dependencies.map(function(namespace){
             return recipe[namespace].url;
           }).value();
-
-          grunt.file.write(path.resolve( f.dest, 'recipe.dependencies.js'), 'recipe.dependencies='+JSON.stringify(json));
-          grunt.file.write(path.resolve( f.dest, 'recipe.version.js'), 'recipe.version='+JSON.stringify(''+options.version));
-
         });
-      });
+
+        grunt.file.write(path.resolve( f.dest, 'recipe.dependencies.js'), 'recipe.dependencies='+JSON.stringify(json));
+        grunt.file.write(path.resolve( f.dest, 'recipe.version.js'), 'recipe.version='+JSON.stringify(''+options.version));
 
     });
 
