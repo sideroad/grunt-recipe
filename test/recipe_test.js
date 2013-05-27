@@ -30,7 +30,7 @@ exports.recipe = {
   origin: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/fettuccine.alfredo.unpack.js');
+    var actual = grunt.file.read('example/dist/fettuccine.alfredo.unpack.js');
     var expected = grunt.file.read('test/expected/fettuccine.alfredo.unpack.js');
     test.equal(actual, expected, 'should be here is origin source.');
 
@@ -39,7 +39,7 @@ exports.recipe = {
   minified: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/fettuccine.alfredo.js');
+    var actual = grunt.file.read('example/dist/fettuccine.alfredo.js');
     var expected = grunt.file.read('test/expected/fettuccine.alfredo.js');
     test.equal(actual, expected, 'should minified origin source.');
 
@@ -48,7 +48,7 @@ exports.recipe = {
   concat: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/fettuccine.alfredo.with-dependencies.unpack.js');
+    var actual = grunt.file.read('example/dist/fettuccine.alfredo.with-dependencies.unpack.js');
     var expected = grunt.file.read('test/expected/fettuccine.alfredo.with-dependencies.unpack.js');
     test.equal(actual, expected, 'should concatenated with dependencies.');
 
@@ -57,7 +57,7 @@ exports.recipe = {
   concat_with_minified: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/fettuccine.alfredo.with-dependencies.js');
+    var actual = grunt.file.read('example/dist/fettuccine.alfredo.with-dependencies.js');
     var expected = grunt.file.read('test/expected/fettuccine.alfredo.with-dependencies.js');
     test.equal(actual, expected, 'should minified origin source.');
 

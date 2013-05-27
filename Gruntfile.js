@@ -21,11 +21,6 @@ module.exports = function(grunt) {
         files: {
           'example/dist': ['recipe.json']
         }
-      },
-      test: {
-        files: {
-          'tmp': ['recipe.json']
-        }
       }
     },
 

@@ -1,46 +1,55 @@
 {
   "fettuccine.alfredo": {
     "path": "example/src/fettuccine.alfredo.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/fettuccine.alfredo.js",
     "dependencies": ["fettuccine", "butter", "parmigianoReggiano", "salt"]
   },
   "fettuccine": {
     "path": "example/src/fettuccine.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/fettuccine.js",
     "dependencies": []
   },
   "butter": {
     "path": "example/src/butter.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/butter.js",
     "dependencies": ["salt", "milk"]
   },
   "parmigianoReggiano": {
     "path": "example/src/parmigianoReggiano.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/parmigianoReggiano.js",
     "dependencies": ["salt", "milk"]
   },
   "salt": {
     "path": "example/src/salt.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/salt.js",
     "dependencies": []
   },
   "milk": {
     "path": "example/src/milk.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/milk.js",
     "dependencies": []
   },
   "pomodorini": {
     "path": "example/src/pomodorini.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/pomodorini.js",
     "dependencies": []
   },
   "whitefish": {
     "path": "example/src/whitefish.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/whitefish.js",
     "dependencies": []
   },
   "acqua.pazza": {
     "path": "example/src/acqua.pazza.js",
+    "dest": "example/dist",
     "url": "http://sideroad.secret.jp/js/acqua.pazza.js",
     "dependencies": ["pomodorini", "salt", "whitefish"]
   }
