@@ -52,6 +52,17 @@ Declare below under the namespace property.
 
 See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/recipe.json)
 
+### Output
+Grunt will output below
+|File name|Value of meaning|
+|recipe.version.js|Version of libraries|
+|recipe.dependencies.js|Libraries dependencies|
+|${librarieName}.with-dependencies.js|Concat and minified origin with dependencies|
+|${librarieName}.with-dependencies.unpack.js|Concat origin with dependencies|
+|${librarieName}.js|Minified origin source|
+|${librarieName}.unpack.js|Origin source|
+
+
 ### Options
 
 #### options.concat
