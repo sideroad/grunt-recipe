@@ -108,7 +108,7 @@ File name suffix of origin source.
 
 ### options.suffix.origin.min
 Type: `String`
-Default value: `.with-dependencies.js`
+Default value: `.js`
 
 File name suffix of minified source.
 
