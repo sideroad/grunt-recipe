@@ -16,6 +16,10 @@ module.exports = function(grunt) {
           concat: 'concat',
           min: 'uglify',
           version: ''+new Date().getTime(),
+          path: {
+            version: false,
+            dependencies: false
+          },
           suffix: {
             concat: {
               unpack: '.with-dependencies.unpack.js',
@@ -105,8 +109,8 @@ module.exports = function(grunt) {
           }).value();
         });
 
-        grunt.file.write(path.resolve( f.dest, 'recipe.dependencies.js'), 'recipe.dependencies='+JSON.stringify(json));
-        grunt.file.write(path.resolve( f.dest, 'recipe.version.js'), 'recipe.version='+JSON.stringify(''+options.version));
+        grunt.file.write(path.resolve( options.path.dependencies || f.dest, 'recipe.dependencies.js'), 'recipe.dependencies='+JSON.stringify(json));
+        grunt.file.write(path.resolve( options.path.version || f.dest, 'recipe.version.js'), 'recipe.version='+JSON.stringify(''+options.version));
 
     });
 
