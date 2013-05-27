@@ -54,6 +54,7 @@ See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/r
 
 ### Output
 Grunt will output below
+
 |File name|Value of meaning|
 |---------|----------------|
 |recipe.version.js|Version of libraries|
