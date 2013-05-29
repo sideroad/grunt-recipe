@@ -112,6 +112,18 @@ Default value: `.js`
 
 File name suffix of minified source.
 
+### options.prepend.version.concat
+Type: `Boolean`
+Default value: `false`
+
+Prepend version file into concatenated source.
+
+### options.prepend.version.origin
+Type: `Boolean`
+Default value: `false`
+
+Prepend version file into origin source.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
