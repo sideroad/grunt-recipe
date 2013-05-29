@@ -113,8 +113,8 @@ module.exports = function(grunt) {
         }).value();
       });
 
-      grunt.file.write(dependenciesPath, 'recipe.dependencies='+JSON.stringify(json));
-      grunt.file.write(versionPath, 'recipe.version='+JSON.stringify(''+options.version));
+      grunt.file.write(dependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(json));
+      grunt.file.write(versionPath, 'if(!recipe){var recipe=function(){}};recipe.version='+JSON.stringify(''+options.version));
 
     });
 
