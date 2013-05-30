@@ -1,0 +1,51 @@
+{
+  "resolving.dependencies": {
+    "path": "test/fixture/resolving.dependencies.js",
+    "dest": "test/actual",
+    "dependencies": ["c"]
+  },
+  "a": {
+    "path": "test/fixture/a.js",
+    "dest": "test/actual",
+    "url": "/js/a.js",
+    "dependencies": []
+  },
+  "b": {
+    "path": "test/fixture/b.js",
+    "dest": "test/actual",
+    "url": "/js/b.js",
+    "dependencies": ["a"]
+  },
+  "c": {
+    "path": "test/fixture/c.js",
+    "dest": "test/actual",
+    "url": "/js/c.js",
+    "dependencies": ["a", "b"]
+  },
+  "no.desitination": {
+    "path": "test/fixture/no.destination.js",
+    "dependencies": []
+  },
+  "no.concat": {
+    "path": "test/fixture/no.concat.js",
+    "dest": "test/actual",
+    "dependencies": [],
+    "concat": false
+  },
+  "no.min": {
+    "path": "test/fixture/no.min.js",
+    "dest": "test/actual",
+    "dependencies": [],
+    "min": false
+  },
+  "version.include": {
+    "path": "test/fixture/version.include.js",
+    "dest": "test/actual",
+    "dependencies": ["recipe.version", "c"]
+  },
+  "dependencies.include": {
+    "path": "test/fixture/dependencies.include.js",
+    "dest": "test/actual",
+    "dependencies": ["version.include", "c"]
+  }
+}

@@ -25,12 +25,6 @@ module.exports = function(grunt) {
               unpack: '.unpack.js',
               min: '.js'
             }
-          },
-          prepend: {
-            version: {
-              concat: false,
-              origin: false
-            }
           }
         }),
         target = this.target,
@@ -38,7 +32,18 @@ module.exports = function(grunt) {
 
     this.files.forEach(function(f) {
       var json = {},
-          recipe = {},
+          dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
+          versionPath = path.resolve( f.dest, 'recipe.version.js'),
+          recipe = {
+            'recipe.version': {
+              path: versionPath,
+              dependencies: []
+            },
+            'recipe.dependencies': {
+              path: dependenciesPath,
+              dependencies: []
+            }
+          },
           src = f.src.filter(function(filepath) {
             if (!grunt.file.exists(filepath)) {
               grunt.log.warn('Source file "' + filepath + '" not found.');
@@ -58,63 +63,65 @@ module.exports = function(grunt) {
               });
             }
             return _.uniq(childs );
-          },
-          dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
-          versionPath = path.resolve( f.dest, 'recipe.version.js');
+          };
 
       _.each(recipe, function( val, namespace ){
         var files,
             concat,
             min,
             dependencies = _(resolve(namespace)).chain().union([namespace]),
-            dest = path.resolve( recipe[namespace].dest, path.basename( val.path )),
+            dest = recipe[namespace].dest ? path.resolve( recipe[namespace].dest, path.basename( val.path )) : '',
             concated = dependencies.map(function(namespace){
               var path;
-              if(recipe[namespace].concat !== false){
+              if(recipe[namespace].include !== false ){
                 path = recipe[namespace].path;
               }
               return path;
             }).compact().value();
 
-        if(options.concat && recipe[namespace].concat !== false){
-          concat = grunt.config.get(options.concat);
+        concat = grunt.config.get(options.concat);
+        min = grunt.config.get(options.min);
+
+        if(dest) {
+          // oringinal source
+          files = {};
+          files[dest.replace(/\.js$/, options.suffix.origin.unpack)] = [val.path];
+          concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};          
+        }
+
+        if(options.concat && dest && recipe[namespace].concat !== false){
 
           // concat dependencies
           files = {};
-          files[dest.replace(/\.js$/, options.suffix.concat.unpack)] = (options.prepend.version.concat) ? [versionPath].concat(concated) : concated;
+          files[dest.replace(/\.js$/, options.suffix.concat.unpack)] = concated;
           concat[target + '.' + namespace+options.suffix.concat.unpack] = {files: files};
-
-          // oringinal source
-          files = {};
-          files[dest.replace(/\.js$/, options.suffix.origin.unpack)] = (options.prepend.version.origin) ? [versionPath, val.path] : [val.path];
-          concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};
-
-          grunt.config.set(options.concat, concat);
         }
 
-        if(options.min && recipe[namespace].min !== false){
-          min = grunt.config.get(options.min);
+        if(options.min && dest && recipe[namespace].min !== false){
 
-          // concat dependencies with minify 
-          files = {};
-          files[dest.replace(/\.js$/, options.suffix.concat.min)] = (options.prepend.version.concat) ? [versionPath].concat(concated) : concated;
-          min[target + '.' + namespace+options.suffix.concat.min] = {files: files};
-
+          if( recipe[namespace].concat !== false ){
+            // concat dependencies with minify 
+            files = {};
+            files[dest.replace(/\.js$/, options.suffix.concat.min)] = concated;
+            min[target + '.' + namespace+options.suffix.concat.min] = {files: files};
+          }
           // original source with minify
           files = {};
-          files[dest.replace(/\.js$/, options.suffix.origin.min)] = (options.prepend.version.origin) ? [versionPath, val.path] : [val.path];
+          files[dest.replace(/\.js$/, options.suffix.origin.min)] = [val.path];
           min[target + '.' + namespace+options.suffix.origin.min] = {files: files};
 
-          grunt.config.set(options.min, min);
         }
+
+        grunt.config.set(options.concat, concat);
+        grunt.config.set(options.min, min);
 
         json[namespace] = dependencies.map(function(namespace){
           return recipe[namespace].url;
-        }).value();
+        }).compact().value();
       });
 
-      grunt.file.write(dependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(json));
-      grunt.file.write(versionPath, 'if(!recipe){var recipe=function(){}};recipe.version='+JSON.stringify(''+options.version));
+      grunt.file.write(dependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(json)+';');
+      grunt.file.write(versionPath, 'if(!recipe){var recipe=function(){}};recipe.version='+JSON.stringify(''+options.version)+';');
 
     });
 

@@ -13,13 +13,21 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    clean: ['example/dist', 'tmp'],
+    clean: ['example/dist', 'tmp', 'test/actual'],
 
     // Configuration to be run (and then tested).
     recipe: {
       main: {
         files: {
           'example/dist': ['recipe.json']
+        }
+      },
+      test: {
+        options:{
+          version: 123456789
+        },
+        files: {
+          'test/actual': ['test/recipe.json']
         }
       }
     },

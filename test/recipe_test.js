@@ -27,39 +27,70 @@ exports.recipe = {
     // setup here if necessary
     done();
   },
-  origin: function(test) {
+  recipeDependencies: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('example/dist/fettuccine.alfredo.unpack.js');
-    var expected = grunt.file.read('test/expected/fettuccine.alfredo.unpack.js');
-    test.equal(actual, expected, 'should be here is origin source.');
+    var actual = grunt.file.read('test/actual/recipe.dependencies.js');
+    var expected = grunt.file.read('test/expected/recipe.dependencies.js');
+    test.equal(actual, expected, 'should output recipe.dependencies.js');
 
     test.done();
   },
-  minified: function(test) {
+  recipeVersion: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('example/dist/fettuccine.alfredo.js');
-    var expected = grunt.file.read('test/expected/fettuccine.alfredo.js');
-    test.equal(actual, expected, 'should minified origin source.');
+    var actual = grunt.file.read('test/actual/recipe.version.js');
+    var expected = grunt.file.read('test/expected/recipe.version.js');
+    test.equal(actual, expected, 'should output recipe.version.js');
 
     test.done();
   },
-  concat: function(test) {
+  resolvingDependencies: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('example/dist/fettuccine.alfredo.with-dependencies.unpack.js');
-    var expected = grunt.file.read('test/expected/fettuccine.alfredo.with-dependencies.unpack.js');
-    test.equal(actual, expected, 'should concatenated with dependencies.');
+    var actual = grunt.file.read('test/actual/resolving.dependencies.js');
+    var expected = grunt.file.read('test/expected/resolving.dependencies.js');
+    test.equal(actual, expected, 'should resolve dependencies.');
 
     test.done();
   },
-  concat_with_minified: function(test) {
+  noMin: function(test) {
+    test.expect(3);
+
+    var actual = grunt.file.read('test/actual/no.min.unpack.js');
+    var expected = grunt.file.read('test/expected/no.min.unpack.js');
+    test.equal(false, grunt.file.exists('test/expected/no.min.js'));
+    test.equal(false, grunt.file.exists('test/expected/no.min.with-dependencies.js'));
+    test.equal(actual, expected, 'should not output minified source.');
+
+    test.done();
+  },
+  noConcat: function(test) {
+    test.expect(3);
+
+    var actual = grunt.file.read('test/actual/no.concat.js');
+    var expected = grunt.file.read('test/expected/no.concat.js');
+    test.equal(false, grunt.file.exists('test/expected/no.concat.with-dependencies.js'));
+    test.equal(false, grunt.file.exists('test/expected/no.concat.with-dependencies.unpack.js'));
+    test.equal(actual, expected, 'should not output concatenated source.');
+
+    test.done();
+  },
+  versionInclude: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('example/dist/fettuccine.alfredo.with-dependencies.js');
-    var expected = grunt.file.read('test/expected/fettuccine.alfredo.with-dependencies.js');
-    test.equal(actual, expected, 'should minified origin source.');
+    var actual = grunt.file.read('test/actual/version.include.js');
+    var expected = grunt.file.read('test/expected/version.include.js');
+    test.equal(actual, expected, 'should include recipe.version.js');
+
+    test.done();
+  },
+  dependenciesInclude: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/actual/dependencies.include.js');
+    var expected = grunt.file.read('test/expected/dependencies.include.js');
+    test.equal(actual, expected, 'should include recipe.dependencies.js');
 
     test.done();
   }
