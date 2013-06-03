@@ -29,6 +29,24 @@ module.exports = function(grunt) {
         files: {
           'test/actual': ['test/recipe.json']
         }
+      },
+      nomin: {
+        options: {
+          version: 123456789,
+          min: false
+        },
+        files: {
+          'test/actual': ['test/recipe.json']
+        }
+      },
+      noconcat: {
+        options: {
+          version: 123456789,
+          concat: false
+        },
+        files: {
+          'test/actual': ['test/recipe.json']
+        }
       }
     },
 

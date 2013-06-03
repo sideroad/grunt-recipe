@@ -79,8 +79,8 @@ module.exports = function(grunt) {
               return path;
             }).compact().value();
 
-        concat = grunt.config.get(options.concat);
-        min = grunt.config.get(options.min);
+        concat = options.concat ? grunt.config.get(options.concat) : {};
+        min = options.min ? grunt.config.get(options.min) : {};
 
         if(dest) {
           // oringinal source
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
           concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};          
         }
 
-        if(options.concat && dest && recipe[namespace].concat !== false){
+        if(dest && recipe[namespace].concat !== false){
 
           // concat dependencies
           files = {};
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
           concat[target + '.' + namespace+options.suffix.concat.unpack] = {files: files};
         }
 
-        if(options.min && dest && recipe[namespace].min !== false){
+        if(dest && recipe[namespace].min !== false){
 
           if( recipe[namespace].concat !== false ){
             // concat dependencies with minify 
@@ -112,8 +112,12 @@ module.exports = function(grunt) {
 
         }
 
-        grunt.config.set(options.concat, concat);
-        grunt.config.set(options.min, min);
+        if(options.concat){
+          grunt.config.set(options.concat, concat);
+        }
+        if(options.min){
+          grunt.config.set(options.min, min);
+        }
 
         json[namespace] = dependencies.map(function(namespace){
           return recipe[namespace].url;
