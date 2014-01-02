@@ -1,3 +1,3 @@
 var c = {
-	goodbye: b.hello + a.hello()
+	goodbye: a.hello() + b.hello
 };

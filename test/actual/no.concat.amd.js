@@ -1,1 +1,1 @@
-define([""],function(){var a={concat:""};return a.concat});
+define(["exports"],function(a){var b={concat:""};a["no.concat"]=b.concat});

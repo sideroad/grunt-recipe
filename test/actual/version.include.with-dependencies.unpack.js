@@ -6,6 +6,6 @@ var b = {
 	hello: a.hello()
 };
 var c = {
-	goodbye: b.hello + a.hello()
+	goodbye: a.hello() + b.hello
 };
 var version={include:''};

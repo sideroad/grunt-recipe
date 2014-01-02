@@ -1,1 +1,1 @@
-define([""],function(){var a={hello:function(){return"world!"}};return a});
+define(["exports"],function(a){var b={hello:function(){return"world!"}};a.a=b});

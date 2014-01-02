@@ -1,1 +1,1 @@
-var c={goodbye:b.hello+a.hello()};
+var c={goodbye:a.hello()+b.hello};

@@ -1,1 +1,1 @@
-define(["recipe.version","a","b","c"],function(){var a={include:""};return a.include});
+define(["recipe.version","a","b","c","exports"],function(a,b,c,d,e){var f={include:""};e["version.include"]=f.include});

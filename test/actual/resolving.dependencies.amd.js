@@ -1,1 +1,1 @@
-define(["a","b","c"],function(){var a={dependencies:""};return a.dependencies});
+define(["a","b","c","exports"],function(a,b,c,d){var e={dependencies:""};d["resolving.dependencies"]=e.dependencies});

@@ -1,1 +1,1 @@
-define(["salt","milk"],function(){var a={consistOf:[this.salt,this.milk]};return a});
+define(["salt","milk","exports"],function(a,b,c){var d={consistOf:[this.salt,this.milk]};c.parmigianoReggiano=d});
