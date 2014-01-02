@@ -120,7 +120,7 @@ module.exports = function(grunt) {
 
         }
 
-        if(dest && recipe[namespace].amd !== false ){
+        if(dest && recipe[namespace].amd !== false && options.amd !== false){
           // original source with minify
           files = {};
 

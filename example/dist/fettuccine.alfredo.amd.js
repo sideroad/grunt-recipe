@@ -1,1 +1,0 @@
-define(["fettuccine","salt","milk","butter","parmigianoReggiano","exports"],function(a,b,c,d,e,f){a.alfredo=!0,f["fettuccine.alfredo"]=a.alfredo});
