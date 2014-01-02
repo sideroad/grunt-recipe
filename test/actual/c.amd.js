@@ -1,0 +1,1 @@
+define(["a","b"],function(a,b){var c={goodbye:b.hello+a.hello()};return c});

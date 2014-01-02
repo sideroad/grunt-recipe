@@ -1,0 +1,1 @@
+define([""],function(){var a={min:""};return a.min});

@@ -15,6 +15,7 @@ module.exports = function(grunt) {
     var options = this.options({
           concat: 'concat',
           min: 'uglify',
+          amd: false,
           version: ''+new Date().getTime(),
           suffix: {
             concat: {
@@ -23,7 +24,8 @@ module.exports = function(grunt) {
             },
             origin: {
               unpack: '.unpack.js',
-              min: '.js'
+              min: '.js',
+              amd: '.amd.js'
             }
           }
         }),
@@ -32,7 +34,9 @@ module.exports = function(grunt) {
 
     this.files.forEach(function(f) {
       var json = {},
+          amd = {},
           dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
+          amdDependenciesPath = path.resolve( f.dest, 'recipe.amd.dependencies.js'),
           versionPath = path.resolve( f.dest, 'recipe.version.js'),
           recipe = {
             'recipe.version': {
@@ -41,6 +45,10 @@ module.exports = function(grunt) {
             },
             'recipe.dependencies': {
               path: dependenciesPath,
+              dependencies: []
+            },
+            'recipe.amd.dependencies': {
+              path: amdDependenciesPath,
               dependencies: []
             }
           },
@@ -86,7 +94,7 @@ module.exports = function(grunt) {
           // oringinal source
           files = {};
           files[dest.replace(/\.js$/, options.suffix.origin.unpack)] = [val.path];
-          concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};          
+          concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};
         }
 
         if(dest && recipe[namespace].concat !== false){
@@ -112,20 +120,43 @@ module.exports = function(grunt) {
 
         }
 
+        if(dest && recipe[namespace].amd !== false ){
+          // original source with minify
+          files = {};
+
+          var amdfile = grunt.file.read(val.path);
+          amdfile = 'define(["'+dependencies.without(namespace, "").value().join('","')+'"], function('+dependencies.without("", namespace).value().join(',').replace(/\./g, "_")+'){'+
+                    amdfile+
+                    ';return '+namespace+';});';
+
+          grunt.file.write(dest.replace(/\.js$/, options.suffix.origin.amd), amdfile);
+          files[dest.replace(/\.js$/, options.suffix.origin.amd)] = [dest.replace(/\.js$/, options.suffix.origin.amd)];
+          min[target + '.' + namespace+options.suffix.origin.amd] = {files: files};
+        }
+
         if(options.concat){
           grunt.config.set(options.concat, concat);
         }
-        if(options.min){
+        if(options.min || options.amd){
           grunt.config.set(options.min, min);
         }
 
         json[namespace] = dependencies.map(function(namespace){
           return recipe[namespace].url;
         }).compact().value();
+
+        amd[namespace] = dependencies.map(function(namespace){
+          return recipe[namespace].amd;
+        }).compact().value();
       });
 
       grunt.file.write(dependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(json)+';');
       grunt.file.write(versionPath, 'if(!recipe){var recipe=function(){}};recipe.version='+JSON.stringify(''+options.version)+';');
+
+      if(options.amd){
+        grunt.file.write(amdDependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(amd)+';');
+      }
+      
 
     });
 

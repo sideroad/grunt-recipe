@@ -1,1 +1,3 @@
-var c;
+var c = {
+	goodbye: a.hello() + b.hello
+};

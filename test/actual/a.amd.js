@@ -1,0 +1,1 @@
+define([""],function(){var a={hello:function(){return"world!"}};return a});

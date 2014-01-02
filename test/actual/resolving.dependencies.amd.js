@@ -1,0 +1,1 @@
+define(["a","b","c"],function(){var a={dependencies:""};return a.dependencies});

@@ -1,0 +1,1 @@
+define(["pomodorini","salt","whitefish"],function(){if(!a)var a={};return a.pazza={consistOf:[this.pomodorini,this.whitefish]},a.pazza});

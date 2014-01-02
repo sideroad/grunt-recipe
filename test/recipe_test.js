@@ -36,6 +36,15 @@ exports.recipe = {
 
     test.done();
   },
+  recipeAmdDependencies: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/actual/recipe.amd.dependencies.js');
+    var expected = grunt.file.read('test/expected/recipe.amd.dependencies.js');
+    test.equal(actual, expected, 'should output recipe.amd.dependencies.js');
+
+    test.done();
+  },
   recipeVersion: function(test) {
     test.expect(1);
 

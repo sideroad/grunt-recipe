@@ -1,1 +1,1 @@
-if(!recipe)var recipe=function(){};recipe.version="123456789";var a,b,c,version={include:""},dependencies={include:""};
+if(!recipe)var recipe=function(){};recipe.version="123456789";var a={hello:function(){return"world!"}},b={hello:a.hello()},c={goodbye:b.hello+a.hello()},version={include:""},dependencies={include:""};

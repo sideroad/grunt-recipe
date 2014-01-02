@@ -47,6 +47,15 @@ module.exports = function(grunt) {
         files: {
           'test/actual': ['test/recipe.json']
         }
+      },
+      amd: {
+        options: {
+          version: 123456789,
+          amd: true
+        },
+        files: {
+          'test/actual': ['test/recipe.json']
+        }
       }
     },
 

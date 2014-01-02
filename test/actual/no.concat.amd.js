@@ -1,0 +1,1 @@
+define([""],function(){var a={concat:""};return a.concat});
