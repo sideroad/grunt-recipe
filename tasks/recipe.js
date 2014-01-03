@@ -27,7 +27,8 @@ module.exports = function(grunt) {
               min: '.js',
               amd: '.amd.js'
             }
-          }
+          },
+          dest: false
         }),
         target = this.target,
         _ = grunt.util._;
@@ -35,9 +36,9 @@ module.exports = function(grunt) {
     this.files.forEach(function(f) {
       var json = {},
           amd = {},
-          dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
-          amdDependenciesPath = path.resolve( f.dest, 'recipe.amd.dependencies.js'),
-          versionPath = path.resolve( f.dest, 'recipe.version.js'),
+          dependenciesPath = path.resolve( options.dest || f.dest, 'recipe.dependencies.js'),
+          amdDependenciesPath = path.resolve( options.dest || f.dest, 'recipe.amd.dependencies.js'),
+          versionPath = path.resolve( options.dest || f.dest, 'recipe.version.js'),
           recipe = {
             'recipe.version': {
               path: versionPath,

@@ -18,6 +18,9 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     recipe: {
       main: {
+        options: {
+          dest: 'example/dist/recipe'
+        },
         files: {
           'example/dist': ['recipe.json']
         }
