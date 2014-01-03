@@ -93,12 +93,10 @@ module.exports = function(grunt) {
 
         if(dest) {
           // oringinal source
-          files = {};
-          files[dest.replace(/\.js$/, options.suffix.origin.unpack)] = [val.path];
-          concat[target + '.' + namespace+options.suffix.origin.unpack] = {files: files};
+          grunt.file.copy(val.path, dest.replace(/\.js$/, options.suffix.origin.unpack));
         }
 
-        if(dest && recipe[namespace].concat !== false){
+        if(dest && recipe[namespace].concat !== false && options.concat !== false){
 
           // concat dependencies
           files = {};
@@ -108,7 +106,7 @@ module.exports = function(grunt) {
 
         if(dest && recipe[namespace].min !== false){
 
-          if( recipe[namespace].concat !== false ){
+          if( recipe[namespace].concat !== false && options.concat){
             // concat dependencies with minify 
             files = {};
             files[dest.replace(/\.js$/, options.suffix.concat.min)] = concated;
