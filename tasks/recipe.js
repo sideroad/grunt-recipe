@@ -80,6 +80,7 @@ module.exports = function(grunt) {
             min,
             dependencies = _(resolve(namespace)).chain().union([namespace]),
             dest = recipe[namespace].dest ? path.resolve( recipe[namespace].dest, path.basename( val.path )) : '',
+            amdDest = !recipe[namespace].amd ? '' : recipe[namespace].amd.dest ? path.resolve( recipe[namespace].amd.dest, path.basename( val.path )) : '',
             concated = dependencies.map(function(namespace){
               var path;
               if(recipe[namespace].include !== false ){
@@ -145,7 +146,7 @@ module.exports = function(grunt) {
         }).compact().value();
 
         amd[namespace] = dependencies.map(function(namespace){
-          return recipe[namespace].amd;
+          return recipe[namespace].amd ? recipe[namespace].amd.url : undefined;
         }).compact().value();
       });
 

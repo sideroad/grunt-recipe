@@ -8,21 +8,30 @@
     "path": "test/fixture/a.js",
     "dest": "test/actual",
     "url": "/js/a.js",
-    "amd": "/js/a.amd.js",
+    "amd": {
+      "url": "/js/a.amd.js",
+      "dest": "test/actual"
+    },
     "dependencies": []
   },
   "b": {
     "path": "test/fixture/b.js",
     "dest": "test/actual",
     "url": "/js/b.js",
-    "amd": "/js/b.amd.js",
+    "amd": {
+      "url": "/js/b.amd.js",
+      "dest": "test/actual"
+    },
     "dependencies": ["a"]
   },
   "c": {
     "path": "test/fixture/c.js",
     "dest": "test/actual",
     "url": "/js/c.js",
-    "amd": "/js/c.amd.js",
+    "amd": {
+      "url": "/js/c.amd.js",
+      "dest": "test/actual"
+    },
     "dependencies": ["a", "b"]
   },
   "no.desitination": {
