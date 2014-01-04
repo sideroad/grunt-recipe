@@ -9,8 +9,8 @@
     "dest": "test/actual",
     "url": "/js/a.js",
     "amd": {
-      "url": "/js/a.amd.js",
-      "dest": "test/actual"
+      "url": "/js/amd/a.amd.js",
+      "dest": "test/actual/amd"
     },
     "dependencies": []
   },
@@ -19,8 +19,8 @@
     "dest": "test/actual",
     "url": "/js/b.js",
     "amd": {
-      "url": "/js/b.amd.js",
-      "dest": "test/actual"
+      "url": "/js/amd/b.amd.js",
+      "dest": "test/actual/amd"
     },
     "dependencies": ["a"]
   },
@@ -29,8 +29,8 @@
     "dest": "test/actual",
     "url": "/js/c.js",
     "amd": {
-      "url": "/js/c.amd.js",
-      "dest": "test/actual"
+      "url": "/js/amd/c.amd.js",
+      "dest": "test/actual/amd"
     },
     "dependencies": ["a", "b"]
   },

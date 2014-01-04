@@ -1,1 +1,0 @@
-define(["exports"],function(a){var b={min:""};a["no.min"]=b.min});

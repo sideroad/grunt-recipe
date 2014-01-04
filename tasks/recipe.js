@@ -25,7 +25,10 @@ module.exports = function(grunt) {
             origin: {
               unpack: '.unpack.js',
               min: '.js',
-              amd: '.amd.js'
+            },
+            amd: {
+              unpack: '.amd.unpack.js',
+              min: '.amd.js'
             }
           },
           dest: false
@@ -80,7 +83,7 @@ module.exports = function(grunt) {
             min,
             dependencies = _(resolve(namespace)).chain().union([namespace]),
             dest = recipe[namespace].dest ? path.resolve( recipe[namespace].dest, path.basename( val.path )) : '',
-            amdDest = !recipe[namespace].amd ? '' : recipe[namespace].amd.dest ? path.resolve( recipe[namespace].amd.dest, path.basename( val.path )) : '',
+            amdDest = recipe[namespace].amd && recipe[namespace].amd.dest ? path.resolve( recipe[namespace].amd.dest, path.basename( val.path )) : '',
             concated = dependencies.map(function(namespace){
               var path;
               if(recipe[namespace].include !== false ){
@@ -120,18 +123,18 @@ module.exports = function(grunt) {
 
         }
 
-        if(dest && recipe[namespace].amd !== false && options.amd !== false){
+        if(amdDest && options.amd !== false){
           // original source with minify
           files = {};
 
           var amdfile = grunt.file.read(val.path);
-          amdfile = 'define(["'+dependencies.without(namespace, "").push("exports").value().join('","')+'"], function('+dependencies.without("", namespace).push("exports").value().join(',').replace(/\./g, "_")+'){'+
+          amdfile = 'define(["'+dependencies.without(namespace, "").push("exports").value().join('","')+'"], function('+dependencies.without("", namespace).push("exports").value().join(',').replace(/\./g, "_")+'){\r\n'+
                     amdfile+
-                    ';exports["'+namespace+'"] = '+namespace+';});';
+                    '\r\n;exports["'+namespace+'"] = '+namespace+';});';
 
-          grunt.file.write(dest.replace(/\.js$/, options.suffix.origin.amd), amdfile);
-          files[dest.replace(/\.js$/, options.suffix.origin.amd)] = [dest.replace(/\.js$/, options.suffix.origin.amd)];
-          min[target + '.' + namespace+options.suffix.origin.amd] = {files: files};
+          grunt.file.write(amdDest.replace(/\.js$/, options.suffix.amd.unpack), amdfile);
+          files[amdDest.replace(/\.js$/, options.suffix.amd.min)] = [amdDest.replace(/\.js$/, options.suffix.amd.unpack)];
+          min[target + '.' + namespace+options.suffix.amd.min] = {files: files};
         }
 
         if(options.concat){
