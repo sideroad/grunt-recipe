@@ -161,8 +161,8 @@ module.exports = function(grunt) {
         grunt.file.write(amdDependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(amd)+';');
       }
       
-      grunt.file.copy('lib/recipe/recipe.js', recipePath);
-      grunt.file.copy('lib/recipe/recipe.unpack.js', recipeUnpackPath);
+      grunt.file.copy(path.resolve(__dirname, '../lib/recipe/recipe.js' ), recipePath);
+      grunt.file.copy(path.resolve(__dirname, '../lib/recipe/recipe.unpack.js' ), recipeUnpackPath);
 
     });
 
