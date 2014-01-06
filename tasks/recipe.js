@@ -30,8 +30,7 @@ module.exports = function(grunt) {
               unpack: '.amd.unpack.js',
               min: '.amd.js'
             }
-          },
-          dest: false
+          }
         }),
         target = this.target,
         _ = grunt.util._;
@@ -39,9 +38,11 @@ module.exports = function(grunt) {
     this.files.forEach(function(f) {
       var json = {},
           amd = {},
-          dependenciesPath = path.resolve( options.dest || f.dest, 'recipe.dependencies.js'),
-          amdDependenciesPath = path.resolve( options.dest || f.dest, 'recipe.amd.dependencies.js'),
-          versionPath = path.resolve( options.dest || f.dest, 'recipe.version.js'),
+          dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
+          amdDependenciesPath = path.resolve( f.dest, 'recipe.amd.dependencies.js'),
+          versionPath = path.resolve( f.dest, 'recipe.version.js'),
+          recipePath = path.resolve( f.dest, 'recipe.js'),
+          recipeUnpackPath = path.resolve( f.dest, 'recipe.unpack.js'),
           recipe = {
             'recipe.version': {
               path: versionPath,
@@ -160,6 +161,8 @@ module.exports = function(grunt) {
         grunt.file.write(amdDependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(amd)+';');
       }
       
+      grunt.file.copy('lib/recipe/recipe.js', recipePath);
+      grunt.file.copy('lib/recipe/recipe.unpack.js', recipeUnpackPath);
 
     });
 

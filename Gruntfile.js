@@ -15,14 +15,15 @@ module.exports = function(grunt) {
 
     clean: ['example/dist', 'tmp', 'test/actual'],
 
+    bower: {
+      install: {}
+    },
+
     // Configuration to be run (and then tested).
     recipe: {
       main: {
-        options: {
-          dest: 'example/dist/recipe'
-        },
         files: {
-          'example/dist': ['recipe.json']
+          'example/dist/recipe': ['recipe.json']
         }
       },
       test: {
@@ -83,9 +84,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-bower-task');  
 
   // By default, lint and run all tests.
-  grunt.registerTask('default', ['clean', 'recipe', 'concat', 'uglify']);
-  grunt.registerTask('test', ['clean', 'recipe', 'concat', 'uglify', 'nodeunit']);
+  grunt.registerTask('default', ['clean', 'bower', 'recipe', 'concat', 'uglify']);
+  grunt.registerTask('test', ['clean', 'bower', 'recipe', 'concat', 'uglify', 'nodeunit']);
 
 };

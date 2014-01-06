@@ -1,0 +1,15 @@
+{
+  "name": "grunt-recipe",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sideroad/grunt-recipe",
+  "authors": [
+    "sideroad <sideroad.jp@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "*"
+  ],
+  "dependencies": {
+    "recipe": "~2.0.0"
+  }
+}
