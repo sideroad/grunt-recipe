@@ -17,20 +17,12 @@ module.exports = function(grunt) {
           min: 'uglify',
           amd: false,
           version: ''+new Date().getTime(),
-          suffix: {
-            concat: {
-              unpack: '.with-dependencies.unpack.js',
-              min: '.with-dependencies.js'
-            },
-            origin: {
-              unpack: '.unpack.js',
-              min: '.js',
-            },
-            amd: {
-              unpack: '.amd.unpack.js',
-              min: '.amd.js'
-            }
-          }
+          concatUnpackSuffix: '.with-dependencies.unpack.js',
+          concatMinSuffix: '.with-dependencies.js',
+          originUnpackSuffix: '.unpack.js',
+          originMinSuffix: '.js',
+          amdUnpackSuffix: '.amd.unpack.js',
+          amdMinSuffix: '.amd.js'
         }),
         target = this.target,
         _ = grunt.util._;
@@ -98,15 +90,15 @@ module.exports = function(grunt) {
 
         if(dest) {
           // oringinal source
-          grunt.file.copy(val.path, dest.replace(/\.js$/, options.suffix.origin.unpack));
+          grunt.file.copy(val.path, dest.replace(/\.js$/, options.originUnpackSuffix));
         }
 
         if(dest && recipe[namespace].concat !== false && options.concat !== false){
 
           // concat dependencies
           files = {};
-          files[dest.replace(/\.js$/, options.suffix.concat.unpack)] = concated;
-          concat[target + '.' + namespace+options.suffix.concat.unpack] = {files: files};
+          files[dest.replace(/\.js$/, options.concatUnpackSuffix)] = concated;
+          concat[target + '.' + namespace+options.concatUnpackSuffix] = {files: files};
         }
 
         if(dest && recipe[namespace].min !== false){
@@ -114,13 +106,13 @@ module.exports = function(grunt) {
           if( recipe[namespace].concat !== false && options.concat){
             // concat dependencies with minify 
             files = {};
-            files[dest.replace(/\.js$/, options.suffix.concat.min)] = concated;
-            min[target + '.' + namespace+options.suffix.concat.min] = {files: files};
+            files[dest.replace(/\.js$/, options.concatMinSuffix)] = concated;
+            min[target + '.' + namespace+options.concatMinSuffix] = {files: files};
           }
           // original source with minify
           files = {};
-          files[dest.replace(/\.js$/, options.suffix.origin.min)] = [val.path];
-          min[target + '.' + namespace+options.suffix.origin.min] = {files: files};
+          files[dest.replace(/\.js$/, options.originMinSuffix)] = [val.path];
+          min[target + '.' + namespace+options.originMinSuffix] = {files: files};
 
         }
 
@@ -133,15 +125,15 @@ module.exports = function(grunt) {
                     amdfile+
                     '\r\n;exports["'+namespace+'"] = '+namespace+';});';
 
-          grunt.file.write(amdDest.replace(/\.js$/, options.suffix.amd.unpack), amdfile);
-          files[amdDest.replace(/\.js$/, options.suffix.amd.min)] = [amdDest.replace(/\.js$/, options.suffix.amd.unpack)];
-          min[target + '.' + namespace+options.suffix.amd.min] = {files: files};
+          grunt.file.write(amdDest.replace(/\.js$/, options.amdUnpackSuffix), amdfile);
+          files[amdDest.replace(/\.js$/, options.amdMinSuffix)] = [amdDest.replace(/\.js$/, options.amdUnpackSuffix)];
+          min[target + '.' + namespace+options.amdMinSuffix] = {files: files};
         }
 
         if(options.concat){
           grunt.config.set(options.concat, concat);
         }
-        if(options.min || options.amd){
+        if(options.min){
           grunt.config.set(options.min, min);
         }
 

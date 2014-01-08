@@ -88,29 +88,41 @@ Default value: `Unix time`
 
 The value is used for avoiding browser cache when update libraries.
 
-### options.suffix.concat.unpack
+### options.concatUnpackSuffix
 Type: `String`
 Default value: `.with-dependencies.unpack.js`
 
 File name suffix of concatenate with dependencies.
 
-### options.suffix.concat.min
+### options.concatMinSuffix
 Type: `String`
 Default value: `.with-dependencies.js`
 
 File name suffix of minified after concatenate with dependencies.
 
-### options.suffix.origin.unpack
+### options.originUnpackSuffix
 Type: `String`
 Default value: `.unpack.js`
 
 File name suffix of origin source.
 
-### options.suffix.origin.min
+### options.originMinSuffix
 Type: `String`
 Default value: `.js`
 
 File name suffix of minified source.
+
+### options.amdUnpackSuffix
+Type: `String`
+Default value: `.amd.unpack.js`
+
+File name suffix of generated AMD source.
+
+### options.originMinSuffix
+Type: `String`
+Default value: `.amd.js`
+
+File name suffix of minify and generated AMD source.
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
