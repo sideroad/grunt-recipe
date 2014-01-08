@@ -48,8 +48,9 @@ Declare below under the namespace property.
 |dest|`String`|||Destination directory path|
 |url|`String`|||Library URL|
 |dependencies|`Array<String>`|*|[]|Dependents namespace|
-|concat|`Boolean`||true|Is concatenate and output dest?|
-|min|`Boolean`||true|Is minify and output dest?|
+|concat|`Boolean`||true|Concatenate scripts|
+|min|`Boolean`||true|Minify script|
+|amd|`Boolean`||true|Generate AMD script|
 
 See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/recipe.json)
 
