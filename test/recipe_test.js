@@ -95,11 +95,16 @@ exports.recipe = {
     test.done();
   },
   specifiedAmdPath: function(test){
-    test.expect(1);
+    test.expect(2);
 
     var actual = grunt.file.read('test/actual/amd/specified.path.amd.js');
     var expected = grunt.file.read('test/expected/amd/specified.path.amd.js');
     test.equal(actual, expected, 'should use specified AMD path');
+    test.equal(
+      grunt.file.read('test/actual/specified.path.js'),
+      grunt.file.read('test/expected/specified.path.js'),
+      'should use normal path'
+    );
 
     test.done();
   },
