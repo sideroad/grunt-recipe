@@ -40,7 +40,7 @@ grunt.initConfig({
 ### Prepare for execute
 
 #### recipe.json
-```json
+```
 {
   ${namespace}: {
     "path": ${path},
@@ -63,7 +63,8 @@ Declare below under the namespace property.
 
 |Property Name|Type|Required|Default value|Value of meaning|
 |-----|-----|-----|-----|-----|
-|path|`String`|*||Library path|
+|namespace|`String`|*||Library namespace|
+|path|`String`|||Library path|
 |dest|`String`|||Destination directory path|
 |url|`String`|||Library URL|
 |dependencies|`Array<String>`|*|[]|Dependents namespace|
@@ -72,7 +73,7 @@ Declare below under the namespace property.
 |amd path|`String`|||Use AMD script path instead of path value|
 |amd dest|`String`|||Destination directory path for AMD script|
 |amd url|`String`|||AMD script URL|
-|amd exports|`Boolean` or `String`|||Export specified value instead of namespace. if value is `false`, ignore to export namespace|
+|amd exports|`Boolean` or `String`|||Export specified value instead of `namespace`. if value is `false`, ignore to export namespace|
 
 See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/recipe.json)
 
