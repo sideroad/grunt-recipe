@@ -120,7 +120,7 @@ Default value: `.amd.unpack.js`
 
 File name suffix of generated AMD source.
 
-#### options.originMinSuffix
+#### options.amdMinSuffix
 Type: `String`
 Default value: `.amd.js`
 
