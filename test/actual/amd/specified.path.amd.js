@@ -1,0 +1,1 @@
+define(["a","b","exports"],function(a,b,c){var d={path:"mock!!"};c["specified.path"]=d.path});

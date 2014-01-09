@@ -9,7 +9,8 @@
 'use strict';
 
 module.exports = function(grunt) {
-  var path = require('path');
+  var path = require('path'),
+      _ = require('lodash');
 
   grunt.registerMultiTask('recipe', 'Your task description goes here.', function() {
     var options = this.options({
@@ -24,8 +25,7 @@ module.exports = function(grunt) {
           amdUnpackSuffix: '.amd.unpack.js',
           amdMinSuffix: '.amd.js'
         }),
-        target = this.target,
-        _ = grunt.util._;
+        target = this.target;
 
     this.files.forEach(function(f) {
       var json = {},
@@ -74,10 +74,12 @@ module.exports = function(grunt) {
         var files,
             concat,
             min,
-            dependencies = _(resolve(namespace)).chain().union([namespace]),
+            deps = _(resolve(namespace)).chain(),
+            depsWithSelf = deps.union([namespace]),
+            depsWithExports = deps.push('exports'),
             dest = recipe[namespace].dest ? path.resolve( recipe[namespace].dest, path.basename( val.path )) : '',
             amdDest = recipe[namespace].amd && recipe[namespace].amd.dest ? path.resolve( recipe[namespace].amd.dest, path.basename( val.path )) : '',
-            concated = dependencies.map(function(namespace){
+            concated = depsWithSelf.map(function(namespace){
               var path;
               if(recipe[namespace].include !== false ){
                 path = recipe[namespace].path;
@@ -120,10 +122,11 @@ module.exports = function(grunt) {
           // original source with minify
           files = {};
 
-          var amdfile = grunt.file.read(val.path);
-          amdfile = 'define(["'+dependencies.without(namespace, "").push("exports").value().join('","')+'"], function('+dependencies.without("", namespace).push("exports").value().join(',').replace(/\./g, "_")+'){\r\n'+
-                    amdfile+
-                    '\r\n;exports["'+namespace+'"] = '+namespace+';});';
+          var amdfile = grunt.file.read(val.amd.path || val.path);
+          amdfile = 'define(["'+depsWithExports.value().join('","')+'"], function('+depsWithExports.value().join(',').replace(/\./g, "_")+'){\r\n'+
+                    amdfile+'\r\n;'+
+                    (val.amd.exports !== false ? 'exports["'+namespace+'"] = '+namespace+';\r\n' : '') +
+                    '});';
 
           grunt.file.write(amdDest.replace(/\.js$/, options.amdUnpackSuffix), amdfile);
           files[amdDest.replace(/\.js$/, options.amdMinSuffix)] = [amdDest.replace(/\.js$/, options.amdUnpackSuffix)];
@@ -137,11 +140,11 @@ module.exports = function(grunt) {
           grunt.config.set(options.min, min);
         }
 
-        json[namespace] = dependencies.map(function(namespace){
+        json[namespace] = depsWithSelf.map(function(namespace){
           return recipe[namespace].url;
         }).compact().value();
 
-        amd[namespace] = dependencies.map(function(namespace){
+        amd[namespace] = depsWithSelf.map(function(namespace){
           return recipe[namespace].amd ? recipe[namespace].amd.url : undefined;
         }).compact().value();
       });

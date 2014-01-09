@@ -85,6 +85,24 @@ exports.recipe = {
 
     test.done();
   },
+  noExports: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/actual/amd/no.exports.amd.js');
+    var expected = grunt.file.read('test/expected/amd/no.exports.amd.js');
+    test.equal(actual, expected, 'should not have exports');
+
+    test.done();
+  },
+  specifiedAmdPath: function(test){
+    test.expect(1);
+
+    var actual = grunt.file.read('test/actual/amd/specified.path.amd.js');
+    var expected = grunt.file.read('test/expected/amd/specified.path.amd.js');
+    test.equal(actual, expected, 'should use specified AMD path');
+
+    test.done();
+  },
   versionInclude: function(test) {
     test.expect(1);
 

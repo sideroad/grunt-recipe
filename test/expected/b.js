@@ -1,1 +1,1 @@
-var b;
+var b={hello:a.hello()};

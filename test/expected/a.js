@@ -1,1 +1,1 @@
-var a;
+var a={hello:function(){return"world!"}};

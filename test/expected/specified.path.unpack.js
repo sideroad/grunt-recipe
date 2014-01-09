@@ -1,0 +1,3 @@
+var specified = {
+	path: true
+};

@@ -34,6 +34,28 @@
     },
     "dependencies": ["a", "b"]
   },
+  "no.exports": {
+    "path": "test/fixture/no.exports.js",
+    "dest": "test/actual",
+    "url": "/js/no.exports.js",
+    "amd": {
+      "url": "/js/amd/no.exports.amd.js",
+      "dest": "test/actual/amd",
+      "exports": false
+    },
+    "dependencies": ["a", "b"]
+  },
+  "specified.path": {
+    "path": "test/fixture/specified.path.js",
+    "dest": "test/actual",
+    "url": "/js/specified.path.js",
+    "amd": {
+      "path": "test/fixture/specified.path.mock.js",
+      "url": "/js/amd/specified.path.amd.js",
+      "dest": "test/actual/amd"
+    },
+    "dependencies": ["a", "b"]
+  },
   "no.desitination": {
     "path": "test/fixture/no.destination.js",
     "dependencies": []

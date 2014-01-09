@@ -1,0 +1,1 @@
+define(["a","b","exports"],function(a,b,c){var d={goodbye:a.hello()+b.hello};c.c=d});

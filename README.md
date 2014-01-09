@@ -65,7 +65,8 @@ Grunt will output below
 |${librarieName}.with-dependencies.unpack.js|Concat origin with dependencies|
 |${librarieName}.js|Minified origin source|
 |${librarieName}.unpack.js|Origin source|
-
+|${librarieName}.amd.js|Minified AMD packed source|
+|${librarieName}.amd.unpack.js|AMD packed source|
 
 ### Options
 
@@ -83,43 +84,43 @@ Default value: `'uglify'`
 Minification configuration properties name.
 Set null, if you don't want to add minification configuration automatically.
 
-### options.version
+#### options.version
 Type: `String`
 Default value: `Unix time`
 
 The value is used for avoiding browser cache when update libraries.
 
-### options.concatUnpackSuffix
+#### options.concatUnpackSuffix
 Type: `String`
 Default value: `.with-dependencies.unpack.js`
 
 File name suffix of concatenate with dependencies.
 
-### options.concatMinSuffix
+#### options.concatMinSuffix
 Type: `String`
 Default value: `.with-dependencies.js`
 
 File name suffix of minified after concatenate with dependencies.
 
-### options.originUnpackSuffix
+#### options.originUnpackSuffix
 Type: `String`
 Default value: `.unpack.js`
 
 File name suffix of origin source.
 
-### options.originMinSuffix
+#### options.originMinSuffix
 Type: `String`
 Default value: `.js`
 
 File name suffix of minified source.
 
-### options.amdUnpackSuffix
+#### options.amdUnpackSuffix
 Type: `String`
 Default value: `.amd.unpack.js`
 
 File name suffix of generated AMD source.
 
-### options.originMinSuffix
+#### options.originMinSuffix
 Type: `String`
 Default value: `.amd.js`
 

@@ -1,0 +1,1 @@
+define(["exports"],function(a){var b={hello:function(){return"world!"}};a.a=b});
