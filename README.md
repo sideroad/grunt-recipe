@@ -69,10 +69,10 @@ Declare below under the namespace property.
 |dependencies|`Array<String>`|*|[]|Dependents namespace|
 |concat|`Boolean`||true|Concatenate scripts|
 |min|`Boolean`||true|Minify script|
-|amd path|`String`||true|Use AMD script path instead of path value|
-|amd dest|`String`||true|Destination directory path for AMD script|
-|amd url|`String`||true|AMD script URL|
-|amd exports|`Boolean` or `String`||true|Export specified value instead of namespace. if value is `false`, ignore to export namespace|
+|amd path|`String`|||Use AMD script path instead of path value|
+|amd dest|`String`|||Destination directory path for AMD script|
+|amd url|`String`|||AMD script URL|
+|amd exports|`Boolean` or `String`|||Export specified value instead of namespace. if value is `false`, ignore to export namespace|
 
 See example [recipe.json](https://github.com/sideroad/grunt-recipe/blob/master/recipe.json)
 
