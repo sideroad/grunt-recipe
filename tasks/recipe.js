@@ -125,7 +125,7 @@ module.exports = function(grunt) {
           var amdfile = grunt.file.read(val.amd.path || val.path);
           amdfile = 'define(["'+depsWithExports.value().join('","')+'"], function('+depsWithExports.value().join(',').replace(/\./g, "_")+'){\r\n'+
                     amdfile+'\r\n;'+
-                    (val.amd.exports !== false ? 'exports["'+namespace+'"] = '+namespace+';\r\n' : '') +
+                    (val.amd.exports !== false ? 'exports["'+ namespace +'"] = '+(val.amd.hasOwnProperty('exports') ? val.amd.exports : namespace)+';\r\n' : '') +
                     '});';
 
           grunt.file.write(amdDest.replace(/\.js$/, options.amdUnpackSuffix), amdfile);

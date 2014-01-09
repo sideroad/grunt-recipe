@@ -56,6 +56,18 @@
     },
     "dependencies": ["a", "b"]
   },
+  "specified.exports": {
+    "path": "test/fixture/specified.exports.js",
+    "dest": "test/actual",
+    "url": "/js/specified.exports.js",
+    "amd": {
+      "path": "test/fixture/specified.exports.js",
+      "url": "/js/amd/specified.exports.amd.js",
+      "dest": "test/actual/amd",
+      "exports": "I.want.to.exports.this"
+    },
+    "dependencies": ["a", "b"]
+  },
   "no.desitination": {
     "path": "test/fixture/no.destination.js",
     "dependencies": []

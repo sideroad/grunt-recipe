@@ -94,6 +94,15 @@ exports.recipe = {
 
     test.done();
   },
+  specifiedExports: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/actual/amd/specified.exports.amd.js');
+    var expected = grunt.file.read('test/expected/amd/specified.exports.amd.js');
+    test.equal(actual, expected, 'should export specified namespace');
+
+    test.done();
+  },
   specifiedAmdPath: function(test){
     test.expect(2);
 

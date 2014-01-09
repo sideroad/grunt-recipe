@@ -1,0 +1,1 @@
+define(["a","b","exports"],function(a,b,c){var d={want:{to:{exports:{"this":ture}}}};c["specified.exports"]=d.want.to.exports.this});
