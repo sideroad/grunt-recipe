@@ -1,4 +1,4 @@
-define(["a","b","exports"], function(a,b,exports){
+define("specified.exports", ["a","b"], function(a,b){
 var specified = {
 		exports: "I don't want to export this"
 	},
@@ -12,5 +12,5 @@ var specified = {
 		}
 	};
 
-;exports["specified.exports"] = I.want.to.exports.this;
+;return I.want.to.exports.this;
 });

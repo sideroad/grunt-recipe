@@ -76,7 +76,6 @@ module.exports = function(grunt) {
             min,
             deps = _(resolve(namespace)).chain(),
             depsWithSelf = deps.union([namespace]),
-            depsWithExports = deps.push('exports'),
             dest = recipe[namespace].dest ? path.resolve( recipe[namespace].dest, path.basename( val.path )) : '',
             amdDest = recipe[namespace].amd && recipe[namespace].amd.dest ? path.resolve( recipe[namespace].amd.dest, path.basename( val.path )) : '',
             concated = depsWithSelf.map(function(namespace){
@@ -122,10 +121,12 @@ module.exports = function(grunt) {
           // original source with minify
           files = {};
 
-          var amdfile = grunt.file.read(val.amd.path || val.path);
-          amdfile = 'define(["'+depsWithExports.value().join('","')+'"], function('+depsWithExports.value().join(',').replace(/\./g, "_")+'){\r\n'+
+          var amdfile = grunt.file.read(val.amd.path || val.path),
+              depsString = deps.value().join('","');
+
+          amdfile = 'define("'+namespace+'", [' + ( depsString? '"' + depsString + '"' : '') + '], function('+deps.value().join(',').replace(/\./g, "_")+'){\r\n'+
                     amdfile+'\r\n;'+
-                    (val.amd.exports !== false ? 'exports["'+ namespace +'"] = '+(val.amd.hasOwnProperty('exports') ? val.amd.exports : namespace)+';\r\n' : '') +
+                    (val.amd.exports !== false ? 'return '+(val.amd.hasOwnProperty('exports') ? val.amd.exports : namespace)+';\r\n' : '') +
                     '});';
 
           grunt.file.write(amdDest.replace(/\.js$/, options.amdUnpackSuffix), amdfile);

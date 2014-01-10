@@ -1,4 +1,4 @@
-define(["a","b","exports"], function(a,b,exports){
+define("no.exports", ["a","b"], function(a,b){
 var no = {
 	exports: false
 };

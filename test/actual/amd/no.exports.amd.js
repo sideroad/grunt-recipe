@@ -1,1 +1,1 @@
-define(["a","b","exports"],function(){});
+define("no.exports",["a","b"],function(){});

@@ -1,6 +1,6 @@
-define(["a","b","exports"], function(a,b,exports){
+define("c", ["a","b"], function(a,b){
 var c = {
 	goodbye: a.hello() + b.hello
 };
-;exports["c"] = c;
+;return c;
 });

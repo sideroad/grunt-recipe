@@ -1,6 +1,6 @@
-define(["a","b","exports"], function(a,b,exports){
+define("specified.path", ["a","b"], function(a,b){
 var specified = {
 	path: "mock!!"
 };
-;exports["specified.path"] = specified.path;
+;return specified.path;
 });
