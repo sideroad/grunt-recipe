@@ -1,3 +1,6 @@
+/*!
+ * banner test!
+ */
 if(!recipe){var recipe=function(){}};recipe.version="123456789";
 var a = {
 	hello: function(){return "world!"}

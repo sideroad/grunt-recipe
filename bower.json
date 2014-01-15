@@ -10,6 +10,6 @@
     "*"
   ],
   "dependencies": {
-    "recipe": "~3.1.0"
+    "recipe": "~3.1.1"
   }
 }

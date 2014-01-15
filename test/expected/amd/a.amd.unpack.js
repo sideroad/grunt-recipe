@@ -1,4 +1,7 @@
-define("a", [""], function(){
+/*!
+ * banner test!
+ */
+define("a", [], function(){
 var a = {
 	hello: function(){return "world!"}
 };
