@@ -1,7 +1,7 @@
 {
   "name": "grunt-recipe",
   "description": "create dependencies.json for recipe.js",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "homepage": "https://github.com/sideroad/grunt-recipe",
   "author": {
     "name": "sideroad",
@@ -31,7 +31,7 @@
   "devDependencies": {
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.1",
+    "grunt-contrib-uglify": "~0.2.7",
     "grunt": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-bower-task": "~0.3.4"

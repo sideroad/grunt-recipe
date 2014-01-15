@@ -60,6 +60,18 @@ module.exports = function(grunt) {
         files: {
           'test/actual': ['test/recipe.json']
         }
+      },
+      banner: {
+        options: {
+          version: 123456789,
+          banner: '/*!\n'+
+                  ' * banner test!\n'+
+                  ' */\n',
+          amd: true
+        },
+        files: {
+          'test/actual': ['test/recipe.json']
+        }
       }
     },
 
@@ -67,7 +79,11 @@ module.exports = function(grunt) {
     concat: {},
 
     // Minify configuration will be set by recipe task automatically
-    uglify: {},
+    uglify: {
+      options: {
+        preserveComments: 'some'
+      }
+    },
 
     // Unit tests.
     nodeunit: {
