@@ -1,4 +1,4 @@
 /*!
  * banner test!
  */
-define("a",[],function(){var a={hello:function(){return"world!"}};return a});
+recipe.define("a",[],function(){var a={hello:function(){return"world!"}};return a});

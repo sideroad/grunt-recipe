@@ -119,7 +119,7 @@ module.exports = function(grunt) {
               depsString = deps.value().join('","');
 
           amdfile = banner+
-                    'define("'+namespace+'", [' + ( depsString? '"' + depsString + '"' : '') + '], function('+deps.value().join(',').replace(/\./g, "_")+'){\r\n'+
+                    'recipe.define("'+namespace+'", [' + ( depsString? '"' + depsString + '"' : '') + '], function('+deps.value().join(',').replace(/\./g, "_")+'){\r\n'+
                     amdfile+'\r\n;'+
                     (val.amd.exports !== false ? 'return '+(val.amd.hasOwnProperty('exports') ? val.amd.exports : namespace)+';\r\n' : '') +
                     '});'+

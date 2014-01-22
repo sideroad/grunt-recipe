@@ -1,4 +1,4 @@
-# grunt-recipe[![Build Status](https://api.travis-ci.org/sideroad/grunt-recipe.png?branch=master)](https://travis-ci.org/sideroad/grunt-recipe)
+# grunt-recipe[![Build Status](https://api.travis-ci.org/sideroad/grunt-recipe.png?branch=master)](https://travis-ci.org/sideroad/grunt-recipe) [![NPM version](https://badge.fury.io/js/grunt-recipe.png)](http://badge.fury.io/js/grunt-recipe)
 
 > Generate scripts for recipe.js
 

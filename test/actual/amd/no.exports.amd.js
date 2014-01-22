@@ -1,4 +1,4 @@
 /*!
  * banner test!
  */
-define("no.exports",["a","b"],function(){});
+recipe.define("no.exports",["a","b"],function(){});
