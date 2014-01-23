@@ -1,4 +1,6 @@
 # grunt-recipe[![Build Status](https://api.travis-ci.org/sideroad/grunt-recipe.png?branch=master)](https://travis-ci.org/sideroad/grunt-recipe) [![NPM version](https://badge.fury.io/js/grunt-recipe.png)](http://badge.fury.io/js/grunt-recipe)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sideroad/grunt-recipe/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
 > Generate scripts for recipe.js
 
@@ -155,6 +157,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 _(Nothing yet)_
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sideroad/grunt-recipe/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
