@@ -1,7 +1,7 @@
 /*!
  * banner test!
  */
-define("a", [], function(){
+recipe.define("a", [], function(){
 var a = {
 	hello: function(){return "world!"}
 };
