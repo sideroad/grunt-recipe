@@ -35,6 +35,7 @@ module.exports = function(grunt) {
 
     concat[target+'-recipe'] = {files:{}, options: {banner: banner, footer: footer}};
     min[target+'-recipe'] = {files:{}, options: {banner: banner, footer: footer}};
+    min[target+'-recipe-concat'] = {files:{}};
     min[target+'-recipe-amd'] = {files: {}};
 
     this.files.forEach(function(f) {
@@ -105,9 +106,9 @@ module.exports = function(grunt) {
 
         if(dest && recipe[namespace].min !== false){
 
-          if( recipe[namespace].concat !== false && options.concat){
+          if( recipe[namespace].concat !== false && options.concat !== false){
             // concat dependencies with minify 
-            min[target+'-recipe'].files[dest.replace(/\.js$/, options.concatMinSuffix)] = concated;
+            min[target+'-recipe-concat'].files[dest.replace(/\.js$/, options.concatMinSuffix)] = [dest.replace(/\.js$/, options.concatUnpackSuffix)];
           }
           // original source with minify
           min[target+'-recipe'].files[dest.replace(/\.js$/, options.originMinSuffix)] = [val.path];
