@@ -24,6 +24,12 @@ module.exports = function(grunt) {
           originMinSuffix: '.js',
           amdUnpackSuffix: '.amd.unpack.js',
           amdMinSuffix: '.amd.js',
+          concatUnpackSuffixFrom: /\.js$/,
+          concatMinSuffixFrom: /\.js$/,
+          originUnpackSuffixFrom: /\.js$/,
+          originMinSuffixFrom: /\.js$/,
+          amdUnpackSuffixFrom: /\.js$/,
+          amdMinSuffixFrom: /\.js$/,
           banner: '',
           footer: ''
         }),
@@ -97,21 +103,21 @@ module.exports = function(grunt) {
         if(dest) {
           // oringinal source
           var originalSource = grunt.file.read(val.path);
-          grunt.file.write(dest.replace(/\.js$/, options.originUnpackSuffix), banner+originalSource+footer);
+          grunt.file.write(dest.replace(options.originUnpackSuffixFrom, options.originUnpackSuffix), banner+originalSource+footer);
         }
 
         if(dest && recipe[namespace].concat !== false && options.concat !== false){
-          concat[target+'-recipe'].files[dest.replace(/\.js$/, options.concatUnpackSuffix)] = concated;
+          concat[target+'-recipe'].files[dest.replace(options.concatUnpackSuffixFrom, options.concatUnpackSuffix)] = concated;
         }
 
         if(dest && recipe[namespace].min !== false){
 
           if( recipe[namespace].concat !== false && options.concat !== false){
             // concat dependencies with minify 
-            min[target+'-recipe-concat'].files[dest.replace(/\.js$/, options.concatMinSuffix)] = [dest.replace(/\.js$/, options.concatUnpackSuffix)];
+            min[target+'-recipe-concat'].files[dest.replace(options.concatMinSuffixFrom, options.concatMinSuffix)] = [dest.replace(options.concatUnpackSuffixFrom, options.concatUnpackSuffix)];
           }
           // original source with minify
-          min[target+'-recipe'].files[dest.replace(/\.js$/, options.originMinSuffix)] = [val.path];
+          min[target+'-recipe'].files[dest.replace(options.originMinSuffixFrom, options.originMinSuffix)] = [val.path];
         }
 
         if(amdDest && options.amd !== false){
@@ -126,8 +132,8 @@ module.exports = function(grunt) {
                     '});'+
                     footer;
 
-          grunt.file.write(amdDest.replace(/\.js$/, options.amdUnpackSuffix), amdfile);
-          min[target+'-recipe-amd'].files[amdDest.replace(/\.js$/, options.amdMinSuffix)] = [amdDest.replace(/\.js$/, options.amdUnpackSuffix)];
+          grunt.file.write(amdDest.replace(options.amdUnpackSuffixFrom, options.amdUnpackSuffix), amdfile);
+          min[target+'-recipe-amd'].files[amdDest.replace(options.amdMinSuffixFrom, options.amdMinSuffix)] = [amdDest.replace(options.amdUnpackSuffixFrom, options.amdUnpackSuffix)];
         }
 
         json[namespace] = depsWithSelf.map(function(namespace){
