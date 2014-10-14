@@ -29,12 +29,12 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-bower-task": "^0.4.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-concat": "~0.3.0",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt": "~0.4.4",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-bower-task": "~0.3.4"
+    "grunt-contrib-uglify": "~0.2.7"
   },
   "keywords": [
     "gruntplugin"
