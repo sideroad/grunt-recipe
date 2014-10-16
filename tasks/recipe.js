@@ -10,7 +10,9 @@
 
 module.exports = function(grunt) {
   var path = require('path'),
-      _ = require('lodash');
+      _ = require('lodash'),
+      beautify = require('js-beautify').js_beautify,
+      fs = require('fs');
 
   grunt.registerMultiTask('recipe', 'Your task description goes here.', function() {
     var options = this.options({
@@ -48,10 +50,14 @@ module.exports = function(grunt) {
       var json = {},
           amd = {},
           dependenciesPath = path.resolve( f.dest, 'recipe.dependencies.js'),
+          dependenciesUnpackPath = path.resolve( f.dest, 'recipe.dependencies.unpack.js'),
           amdDependenciesPath = path.resolve( f.dest, 'recipe.amd.dependencies.js'),
+          amdDependenciesUnpackPath = path.resolve( f.dest, 'recipe.amd.dependencies.unpack.js'),
           versionPath = path.resolve( f.dest, 'recipe.version.js'),
           recipePath = path.resolve( f.dest, 'recipe.js'),
           recipeUnpackPath = path.resolve( f.dest, 'recipe.unpack.js'),
+          dependencies,
+          amdDependencies,
           recipe = {
             'recipe.version': {
               path: versionPath,
@@ -152,11 +158,19 @@ module.exports = function(grunt) {
         grunt.config.set(options.min, min);
       }
 
-      grunt.file.write(dependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(json)+';');
+      dependencies = 'if(!recipe){var recipe=function(){};}recipe.dependencies='+JSON.stringify(json)+';';
+
+      grunt.file.write(dependenciesPath, dependencies);
+      grunt.file.write(dependenciesUnpackPath, beautify(dependencies, {
+        indent_size: 2,
+        keep_array_indentation: true
+      }));
       grunt.file.write(versionPath, 'if(!recipe){var recipe=function(){}};recipe.version='+JSON.stringify(''+options.version)+';');
 
       if(options.amd){
-        grunt.file.write(amdDependenciesPath, 'if(!recipe){var recipe=function(){}};recipe.dependencies='+JSON.stringify(amd)+';');
+        amdDependencies = 'if(!recipe){var recipe=function(){};}recipe.dependencies='+JSON.stringify(amd)+';';
+        grunt.file.write(amdDependenciesPath, amdDependencies);
+        grunt.file.write(amdDependenciesUnpackPath, beautify(amdDependencies, {indent_size: 2}));
       }
       
       grunt.file.copy(path.resolve(__dirname, '../lib/recipe/recipe.js' ), recipePath);

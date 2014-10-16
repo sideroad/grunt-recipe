@@ -1,7 +1,7 @@
 {
   "name": "grunt-recipe",
   "description": "create dependencies.json for recipe.js",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "homepage": "https://github.com/sideroad/grunt-recipe",
   "author": {
     "name": "sideroad",
@@ -40,6 +40,7 @@
     "gruntplugin"
   ],
   "dependencies": {
+    "js-beautify": "^1.5.4",
     "lodash": "~2.4.1"
   }
 }
